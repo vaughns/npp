@@ -14,6 +14,7 @@
     <ProjectGuid>{80FF6833-2672-4C8A-9943-827824BA599E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ZenCodingPython</RootNamespace>
+    <ProjectName>EmmetNPP</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,6 +43,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\WinDDK\7600.16385.1\inc\mfc42;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -70,7 +72,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ZENCODINGPYTHON_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\work\PythonScript\NppPlugin\include;E:\work\PythonScript\PythonScript\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Z:\Projects\emmet-ws\PythonScript\PythonScript\include;Z:\Projects\emmet-ws\PythonScript\NppPlugin\include;E:\work\PythonScript\NppPlugin\include;E:\work\PythonScript\PythonScript\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -79,7 +81,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>NppPlugin.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:\work\PythonScript\NppPlugin\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Z:\Projects\emmet-ws\PythonScript\NppPlugin\bin\Release;E:\work\PythonScript\NppPlugin\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -95,7 +97,7 @@
   <ItemGroup>
     <ClCompile Include="AboutDlg.cpp" />
     <ClCompile Include="FuncItemManager.cpp" />
-    <ClCompile Include="ZenCoding-Python.cpp">
+    <ClCompile Include="EmmetNPP.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>

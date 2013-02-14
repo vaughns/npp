@@ -19,7 +19,7 @@ struct SCNotification
 
 
 /* Info for Notepad++ */
-CONST TCHAR PLUGIN_NAME[]	= _T("Zen Coding - Python");
+CONST TCHAR PLUGIN_NAME[]	= _T("Emmet");
 
 FuncItem	*funcItem = NULL;
 
@@ -69,36 +69,36 @@ void initialise()
 	TCHAR configPath[MAX_PATH];
 	::SendMessage(nppData._nppHandle, NPPM_GETPLUGINSCONFIGDIR, MAX_PATH, reinterpret_cast<LPARAM>(configPath));
 	
-	tstring my_zen_settings(configPath);
-	my_zen_settings.append(_T("\\ZenCodingPython\\zencoding\\my_zen_settings.py"));
+	//tstring my_zen_settings(configPath);
+	//my_zen_settings.append(_T("\\ZenCodingPython\\zencoding\\my_zen_settings.py"));
 
-		
-	if (!::PathFileExists(my_zen_settings.c_str()))
-	{
-		std::ofstream mySettingsFile(my_zen_settings.c_str());
+	//	
+	//if (!::PathFileExists(my_zen_settings.c_str()))
+	//{
+	//	std::ofstream mySettingsFile(my_zen_settings.c_str());
 
-		mySettingsFile << "my_zen_settings = {\n"
-						  "     'html': {\n"
-						  "      	'abbreviations': {\n"
-						  "			'jq': '<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js\"></script>',\n"
-						  "			'demo': '<div id   =\"demo\"></div>'\n"
-						  "		}\n"
-						  "   }\n"
-						  "}\n";
-		mySettingsFile.close();
+	//	mySettingsFile << "my_zen_settings = {\n"
+	//					  "     'html': {\n"
+	//					  "      	'abbreviations': {\n"
+	//					  "			'jq': '<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js\"></script>',\n"
+	//					  "			'demo': '<div id   =\"demo\"></div>'\n"
+	//					  "		}\n"
+	//					  "   }\n"
+	//					  "}\n";
+	//	mySettingsFile.close();
 
-	}
+	//}
 
-	tstring zen_module(_T("sys.path.append(r'"));
-	zen_module.append(configPath);
-	zen_module.append(_T("\\ZenCodingPython')\nimport npp_zen_coding\n"));
+	tstring emmet_module(_T("sys.path.append(r'"));
+	emmet_module.append(configPath);
+	emmet_module.append(_T("\\EmmetNPP')\nimport npp_emmet\n"));
 
-	runString(zen_module.c_str());
+	runString(emmet_module.c_str());
 
 	g_initialised = true;
 
 	// Set the current profile if it's not xhtml (the default)
-	if (g_fiProfileHtml == g_currentProfileIndex)
+	/*if (g_fiProfileHtml == g_currentProfileIndex)
 	{
 		setProfile(_T("html"), g_fiProfileHtml);
 	}
@@ -109,7 +109,7 @@ void initialise()
 	else if (g_fiProfilePlain == g_currentProfileIndex)
 	{
 		setProfile(_T("plain"), g_fiProfilePlain);
-	}
+	}*/
 
 	
 
@@ -120,11 +120,11 @@ void doExpandAbbreviation()
 	CHECK_INITIALISED();
 	if (g_expandIsTab)
 	{
-		runString(_T("npp_zen_coding.expand_abbreviation(True)"));
+		runString(_T("npp_emmet.expand_abbreviation(True)"));
 	}
 	else
 	{
-		runString(_T("npp_zen_coding.expand_abbreviation(False)"));
+		runString(_T("npp_emmet.expand_abbreviation(False)"));
 	}
 }
 
@@ -133,127 +133,136 @@ void doExpandAbbreviation()
 void doWrapWithAbbreviation()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.wrap_with_abbreviation()"));
+	runString(_T("npp_emmet.run_action('wrap_with_abbreviation')"));
 }
 
 
 void doNextEditPoint()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.next_edit_point()"));
+	runString(_T("npp_emmet.run_action('next_edit_point')"));
 }
 
 void doPreviousEditPoint()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.prev_edit_point()"));
+	runString(_T("npp_emmet.run_action('prev_edit_point')"));
 }
 
 void doSelectNextItem()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.select_next_item()"));
+	runString(_T("npp_emmet.run_action('select_next_item')"));
 }
 
 void doSelectPreviousItem()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.select_previous_item()"));
+	runString(_T("npp_emmet.run_action('select_previous_item')"));
 }
 
 void doMatchPairInward()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.match_pair_inward()"));
+	runString(_T("npp_emmet.run_action('match_pair_inward')"));
 }
 
 void doMatchPairOutward()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.match_pair_outward()"));
+	runString(_T("npp_emmet.run_action('match_pair_outward')"));
 }
 
 void doGoToMatchingPair()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.go_to_matching_pair()"));
+	runString(_T("npp_emmet.run_action('go_to_matching_pair')"));
 }
 
 void doMergeLines()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.merge_lines()"));
+	runString(_T("npp_emmet.run_action('merge_lines')"));
 }
 
 void doToggleComment()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.toggle_comment()"));
+	runString(_T("npp_emmet.run_action('toggle_comment')"));
 }
 
 void doSplitJoinTag()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.split_join_tag()"));
+	runString(_T("npp_emmet.run_action('split_join_tag')"));
 }
 
 void doRemoveTag()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.remove_tag()"));
+	runString(_T("npp_emmet.run_action('remove_tag')"));
 }
-
-
 
 
 void doUpdateImageSize()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.update_image_size()"));
+	runString(_T("npp_emmet.run_action('update_image_size')"));
 }
 
-void doAddEntryAbbreviation()
-{
-	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.add_entry('abbreviations')"));
-}
-
-void doAddEntrySnippet()
-{
-	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.add_entry('snippets')"));
-}
+//void doAddEntryAbbreviation()
+//{
+//	CHECK_INITIALISED();
+//	runString(_T("npp_zen_coding.add_entry('abbreviations')"));
+//}
+//
+//void doAddEntrySnippet()
+//{
+//	CHECK_INITIALISED();
+//	runString(_T("npp_zen_coding.add_entry('snippets')"));
+//}
 
 void doEvaluateMathExpression()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.evaluate_math_expression()"));
+	runString(_T("npp_emmet.run_action('evaluate_math_expression')"));
 }
 
 void doReflectCssValue()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.reflect_css_value()"));
+	runString(_T("npp_emmet.run_action('reflect_css_value')"));
 }
 
+void doInsertLinebreak()
+{
+	CHECK_INITIALISED();
+	runString(_T("npp_emmet.run_action('insert_formatted_line_break_only')"));
+}
+
+void doDataURL()
+{
+	CHECK_INITIALISED();
+	runString(_T("npp_emmet.run_action('encode_decode_data_url')"));
+}
 
 void doAutocomplete()
 {
 	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.show_autocomplete()"));
+	runString(_T("npp_emmet.show_autocomplete()"));
 }
 
-void doAddAbbreviation()
-{
-	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.add_entry('abbreviations')"));
-}
-
-void doAddSnippet()
-{
-	CHECK_INITIALISED();
-	runString(_T("npp_zen_coding.add_entry('snippets')"));
-}
+//void doAddAbbreviation()
+//{
+//	CHECK_INITIALISED();
+//	runString(_T("npp_zen_coding.add_entry('abbreviations')"));
+//}
+//
+//void doAddSnippet()
+//{
+//	CHECK_INITIALISED();
+//	runString(_T("npp_zen_coding.add_entry('snippets')"));
+//}
 
 void doAbout()
 {
@@ -298,7 +307,7 @@ void setProfile(const TCHAR *profileName, int cmdIndex)
 	
 	::SendMessage(nppData._nppHandle, NPPM_SETMENUITEMCHECK, funcItem[cmdIndex]._cmdID, TRUE);
 	
-	if (g_initialised)
+	/*if (g_initialised)
 	{
 		TCHAR cmd[150];
 		_tcscpy_s(cmd, 150, _T("npp_zen_coding.set_profile('"));
@@ -306,7 +315,7 @@ void setProfile(const TCHAR *profileName, int cmdIndex)
 		_tcscat_s(cmd, 150, _T("')"));
 
 		runString(cmd);
-	}
+	}*/
 	g_currentProfile = profileName;
 	g_currentProfileIndex = cmdIndex;
 }
@@ -369,7 +378,7 @@ extern "C" __declspec(dllexport) void setInfo(NppData notepadPlusData)
 	aboutDlg.init(static_cast<HINSTANCE>(g_hModule), nppData);
 	
 	::SendMessage(nppData._nppHandle, NPPM_GETPLUGINSCONFIGDIR, MAX_PATH, reinterpret_cast<LPARAM>(g_iniPath));
-	_tcscat_s(g_iniPath, MAX_PATH, _T("\\ZenCodingPython.ini"));
+	_tcscat_s(g_iniPath, MAX_PATH, _T("\\EmmetNPP.ini"));
 }
 
 
@@ -407,22 +416,24 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(int *nbF)
 	g_funcItemManager->addFunction(_T("Split / join tag"), doSplitJoinTag);
 	g_funcItemManager->addFunction(_T("Remove tag"), doRemoveTag);
 	g_funcItemManager->addSplitter(); // ----------------------
+	g_funcItemManager->addFunction(_T("Insert formatted linebreak"), doInsertLinebreak);
 	g_funcItemManager->addFunction(_T("Toggle comment"), doToggleComment);
 	g_funcItemManager->addFunction(_T("Update image size"), doUpdateImageSize);
+	g_funcItemManager->addFunction(_T("Encode/decode image to data:URL"), doDataURL);
 	g_funcItemManager->addFunction(_T("Reflect CSS value"), doReflectCssValue);
 	g_funcItemManager->addFunction(_T("Evalute math expression"), doEvaluateMathExpression);
+	//g_funcItemManager->addSplitter(); // ----------------------
+	//g_funcItemManager->addFunction(_T("Add abbreviation"), doAddAbbreviation);
+	//g_funcItemManager->addFunction(_T("Add snippet"), doAddSnippet);
+	//g_funcItemManager->addSplitter(); // ----------------------
+	//g_funcItemManager->addFunction(_T("Autocomplete"), doAutocomplete);
 	g_funcItemManager->addSplitter(); // ----------------------
-	g_funcItemManager->addFunction(_T("Add abbreviation"), doAddAbbreviation);
-	g_funcItemManager->addFunction(_T("Add snippet"), doAddSnippet);
-	g_funcItemManager->addSplitter(); // ----------------------
-	g_funcItemManager->addFunction(_T("Autocomplete"), doAutocomplete);
-	g_funcItemManager->addSplitter(); // ----------------------
-	g_fiAutoProfile  = g_funcItemManager->addFunction(_T("Auto select profile"), doProfileAutoSelect, NULL, true);
+	/*g_fiAutoProfile  = g_funcItemManager->addFunction(_T("Auto select profile"), doProfileAutoSelect, NULL, true);
 	g_fiProfileXhtml = g_funcItemManager->addFunction(_T("Profile: xhtml"), doProfileXhtml, NULL, true);
 	g_fiProfileHtml  = g_funcItemManager->addFunction(_T("Profile: html"), doProfileHtml);
 	g_fiProfileXml   = g_funcItemManager->addFunction(_T("Profile: xml"), doProfileXml);
 	g_fiProfilePlain = g_funcItemManager->addFunction(_T("Profile: plain"), doProfilePlain);
-	g_funcItemManager->addSplitter(); // ----------------------
+	g_funcItemManager->addSplitter();*/ // ----------------------
 	g_funcItemManager->addFunction(_T("About"), doAbout);
 	
 	funcItem = g_funcItemManager->getFuncItems(nbF);
@@ -486,12 +497,12 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 				{
 					if (g_initialised)
 					{
-						runString(_T("npp_zen_coding.update_settings()"));
-						::MessageBox(nppData._nppHandle, _T("Zen Coding settings automatically refreshed"), _T("Zen Coding for Notepad++"), MB_ICONINFORMATION);
+						runString(_T("npp_emmet.reload()"));
+						::MessageBox(nppData._nppHandle, _T("Emmet settings automatically refreshed"), _T("Emmet for Notepad++"), MB_ICONINFORMATION);
 					}
 					else
 					{
-						::MessageBox(nppData._nppHandle, _T("New Zen Coding settings have been applied"), _T("Zen Coding for Notepad++"), MB_ICONINFORMATION);
+						::MessageBox(nppData._nppHandle, _T("New Emmet settings have been applied"), _T("Emmet for Notepad++"), MB_ICONINFORMATION);
 					}
 				}
 			}
@@ -549,12 +560,12 @@ void runString(const TCHAR *script, int messageType /* = PYSCR_EXECSTATEMENT */)
 	BOOL delivery = SendMessage(nppData._nppHandle, NPPM_MSGTOPLUGIN, reinterpret_cast<WPARAM>(pluginName), reinterpret_cast<LPARAM>(&commInfo));
 	if (!delivery)
 	{
-		MessageBox(NULL, _T("Python Script Plugin not found.  Please install the Python Script plugin from Plugin Manager"), _T("Zen Coding - Python"), 0);
+		MessageBox(NULL, _T("Python Script Plugin not found.  Please install the Python Script plugin from Plugin Manager"), _T("Emmet"), 0);
 		g_pythonFailure = true;
 	}	
 	else if (!pse.deliverySuccess)
 	{
-		MessageBox(NULL, _T("Python Script Plugin did not accept the script"), _T("Zen Coding - Python"), 0);
+		MessageBox(NULL, _T("Python Script Plugin did not accept the script"), _T("Emmet"), 0);
 		g_pythonFailure = true;
 	}
 }

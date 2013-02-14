@@ -38,13 +38,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZenCoding-Python.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FuncItemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EmmetNPP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
