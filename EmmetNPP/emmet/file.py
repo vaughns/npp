@@ -8,10 +8,13 @@ import re
 
 is_python3 = sys.version_info[0] > 2
 
-if is_python3:
-	import urllib.request as urllib2
-else:
-	import urllib2
+try:
+	if is_python3:
+		import urllib.request as urllib2
+	else:
+		import urllib2
+except Exception as e:
+	pass
 
 def is_url(path):
 	return re.match(r'^https?://', path, re.IGNORECASE)

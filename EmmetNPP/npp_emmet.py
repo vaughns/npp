@@ -16,7 +16,12 @@ contrib = {
 }
 
 # create JS environment
-ctx = Context([os.path.join(BASE_PATH, 'editor.js')], EXT_PATH, contrib, pyv8_path=BASE_PATH)
+ctx = Context(
+	files=[os.path.join(BASE_PATH, 'editor.js')], 
+	ext_path=EXT_PATH, 
+	contrib=contrib, 
+	logger=lambda msg: Npp.console.write(msg)
+)
 
 def run_action(name):
 	lang = str(Npp.notepad.getLangType()).lower()
