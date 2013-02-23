@@ -7,3 +7,5 @@ ipch/
 *.opensdf
 *.aps
 *.pyc
+/EmmetNPP.dll
+/.DS_Store
