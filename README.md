@@ -4,7 +4,7 @@
 
 ## Installation
 
-This plugin is available via Plugin Manager: use Plugins > Plugin Manager > Show Plugin Manager menu action and find and install “Emmet” plugin.
+This plugin <s>is available</s> *will be available soon* via Plugin Manager: use Plugins > Plugin Manager > Show Plugin Manager menu action and find and install “Emmet” plugin.
 
 ### Manual installation
 
