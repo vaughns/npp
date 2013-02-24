@@ -102,9 +102,18 @@ var editorProxy = emmet.exec(function(require, _) {
 
 		getSyntax: function() {
 			var syntax = this._syntax || 'html';
+			var fileExt = 'html';
+			var m = this.getFilePath().match(/\.(\w+)$/i);
+			if (m) {
+				fileExt = m[1];
+			}
+
+			if (syntax == 'user') {
+				syntax = fileExt;
+			}
 
 			// maybe it's XSL?
-			if (syntax == 'xml' && this.getFilePath().match(/\.xsl$/i)) {
+			if (syntax == 'xml' && fileExt == 'xsl') {
 				syntax = 'xsl';
 			}
 
