@@ -7,12 +7,40 @@ from emmet.context import Context
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 EXT_PATH = os.path.join(Npp.notepad.getPluginConfigDir(), 'emmet')
 
+def char_to_byte(pos):
+	if pos == 0:
+		return 0;
+
+	text = Npp.editor.getText().decode('utf8')
+	text_len = len(text)
+	if pos > text_len:
+		pos = text_len
+
+	char_pos = len(text[0:pos].encode('utf8'))
+	return char_pos
+
+def byte_to_char(pos):
+	if pos == 0:
+		return 0;
+
+	text = Npp.editor.getText().decode('utf8')
+	offset = 0
+	for i, ch in enumerate(text):
+		if pos <= offset:
+			return i
+
+		offset += len(ch.encode('utf8'))
+
+	return len(text)
+
 # provide some contributions to JS
 contrib = {
 	'notepad': Npp.notepad,
 	'console': Npp.console,
 	'editor': Npp.editor,
-	'Npp': Npp
+	'Npp': Npp,
+	'ctb': char_to_byte,
+	'btc': byte_to_char
 }
 
 # create JS environment
@@ -20,7 +48,7 @@ ctx = Context(
 	files=[os.path.join(BASE_PATH, 'editor.js')], 
 	ext_path=EXT_PATH, 
 	contrib=contrib, 
-	logger=lambda msg: Npp.console.write(msg)
+	logger=lambda msg: Npp.console.write('%s\n' % msg)
 )
 
 def run_action(name):

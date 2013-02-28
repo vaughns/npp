@@ -26,8 +26,8 @@ var editorProxy = emmet.exec(function(require, _) {
 
 		getSelectionRange: function() {
 			return {
-				start: this.ctx().getSelectionStart(),
-				end: this.ctx().getSelectionEnd()
+				start: btc(this.ctx().getSelectionStart()),
+				end: btc(this.ctx().getSelectionEnd())
 			};
 		},
 
@@ -36,23 +36,25 @@ var editorProxy = emmet.exec(function(require, _) {
 				end = start;
 			}
 
-			this.ctx().setSelection(start, end);
+			this.ctx().setSelection(ctb(start), ctb(end));
 		},
 
 		getCurrentLineRange: function() {
 			var sel = this.getSelectionRange();
+			var c = this.ctx();
 			return {
-				start: this.ctx().lineFromPosition(sel.start),
-				end: this.ctx().lineFromPosition(sel.end)
+				start: ctb(c.lineFromPosition(c.getSelectionStart())),
+				end: ctb(c.lineFromPosition(c.getSelectionEnd()))
 			};
 		},
 
 		getCaretPos: function() {
-			return this.ctx().getCurrentPos();
+			var pos = this.ctx().getCurrentPos();
+			return btc(this.ctx().getCurrentPos());
 		},
 
 		setCaretPos: function(pos) {
-			this.ctx().gotoPos(pos);
+			this.ctx().gotoPos(btc(pos));
 		},
 
 		getCurrentLine: function() {
@@ -91,7 +93,7 @@ var editorProxy = emmet.exec(function(require, _) {
 			}
 			
 			// insert new text
-			this.ctx().setTarget(start, end);
+			this.ctx().setTarget(ctb(start), ctb(end));
 			this.ctx().replaceTarget(value);
 			this.createSelection(firstTabStop.start, firstTabStop.end);
 		},
