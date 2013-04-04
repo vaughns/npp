@@ -8,4 +8,4 @@ ipch/
 *.aps
 *.pyc
 /EmmetNPP.dll
-/.DS_Store
+.DS_Store
