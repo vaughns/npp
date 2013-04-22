@@ -5,7 +5,7 @@ function pySetupEditorProxy(syntax) {
 	editorProxy._syntax = syntax;
 	var indentation = '\t';
 	if (!e.getUseTabs()) {
-		indentation = r('utils').repeatString(' ', +e.getIndent());
+		indentation = r('utils').repeatString(' ', +e.getTabWidth());
 	}
 
 	var nl = '\n';

@@ -89,10 +89,12 @@ void initialise()
 
 	//}
 
-	tstring emmet_module(_T("from Npp import notepad\n"));
+	tstring emmet_module(_T("from Npp import notepad, console\n"));
 	emmet_module.append(_T("import os.path\n"));
-	emmet_module.append(_T("sys.path.append(os.path.join(notepad.getNppDir(), 'plugins', 'EmmetNPP'))\n"));
-	emmet_module.append(_T("sys.path.append(os.path.join(notepad.getPluginConfigDir(), 'EmmetNPP'))\n"));
+	emmet_module.append(_T("sys.path.insert(0, os.path.join(notepad.getPluginConfigDir(), 'EmmetNPP'))\n"));
+	emmet_module.append(_T("sys.path.insert(0, os.path.join(notepad.getNppDir(), 'plugins', 'EmmetNPP'))\n"));
+	emmet_module.append(_T("console.write('Starting Emmet\\n')\n"));
+	emmet_module.append(_T("console.write('%s\\n' % sys.path)\n"));
 	emmet_module.append(_T("import npp_emmet\n"));
 
 	/*tstring emmet_module(_T("sys.path.append(r'"));

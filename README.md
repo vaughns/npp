@@ -9,10 +9,8 @@ This plugin <s>is available</s> *will be available soon* via Plugin Manager: use
 ### Manual installation
 
 1. Install Python Script plugin (available in Plugin Manager).
-2. [Download EmmetNPP](https://github.com/emmetio/npp/raw/master/emmet-npp.zip) plugin and unpack it somewhere
-3. Copy `EmmetNPP.dll` file into `C:\Program Files\Notepad++\plugins` folder
-4. Copy `EmmetNPP` folder into `%USER%\AppData\Roaming\Notepad++\plugins\config`
-5. Start Nodepad++. You should see `Plugins > Emmet` menu item.
+2. [Download EmmetNPP](https://github.com/emmetio/npp/raw/master/emmet-npp.zip) plugin and unpack it into `C:\Program Files\Notepad++\plugins` folder
+3. Start Nodepad++. You should see `Plugins > Emmet` menu item.
 
 ## Changing keyboard shortcuts
 
