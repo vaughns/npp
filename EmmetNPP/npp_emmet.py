@@ -6,30 +6,39 @@ from emmet.context import Context
 
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 EXT_PATH = os.path.join(Npp.notepad.getPluginConfigDir(), 'emmet')
+UTF8_ENC = 65001
+
+def is_utf8_doc():
+	return Npp.editor.getCodePage() == UTF8_ENC
+
+def decoded_content():
+	text = Npp.editor.getText()
+	return text.decode('utf8' if is_utf8_doc() else 'latin-1')
 
 def char_to_byte(pos):
 	if pos == 0:
 		return 0;
 
-	text = Npp.editor.getText().decode('utf8')
+	text = decoded_content()
 	text_len = len(text)
 	if pos > text_len:
 		pos = text_len
 
-	char_pos = len(text[0:pos].encode('utf8'))
+	substr = text[0:pos]
+	char_pos = len(substr.encode('utf8') if is_utf8_doc() else substr)
 	return char_pos
 
 def byte_to_char(pos):
 	if pos == 0:
 		return 0;
 
-	text = Npp.editor.getText().decode('utf8')
+	text = decoded_content()
 	offset = 0
 	for i, ch in enumerate(text):
 		if pos <= offset:
 			return i
 
-		offset += len(ch.encode('utf8'))
+		offset += len(ch.encode('utf8') if is_utf8_doc() else ch)
 
 	return len(text)
 
