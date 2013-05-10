@@ -4,12 +4,14 @@
 
 ## Installation
 
-This plugin <s>is available</s> *will be available soon* via Plugin Manager: use Plugins > Plugin Manager > Show Plugin Manager menu action and find and install “Emmet” plugin.
+### Plugin manager
+
+This plugin is available via Plugin Manager: use Plugins > Plugin Manager > Show Plugin Manager menu action and find and install “Emmet” plugin.
 
 ### Manual installation
 
 1. Install Python Script plugin (available in Plugin Manager).
-2. [Download EmmetNPP](https://github.com/emmetio/npp/raw/master/emmet-npp.zip) plugin and unpack it into `C:\Program Files\Notepad++\plugins` folder
+2. [Download EmmetNPP](https://download.emmet.io/npp/emmet-npp.zip) plugin and unpack it into `C:\Program Files\Notepad++\plugins` folder
 3. Start Nodepad++. You should see `Plugins > Emmet` menu item.
 
 ## Changing keyboard shortcuts
